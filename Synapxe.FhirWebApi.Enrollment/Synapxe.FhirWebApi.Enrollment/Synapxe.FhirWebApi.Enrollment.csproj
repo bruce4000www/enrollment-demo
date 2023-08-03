@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ProjectGuid>{EFE0EA2E-ADD0-4DC7-AA19-A69C06143F7D}</ProjectGuid>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Synapxe.FhirWebApi.Enrollment.IntegrationTests" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+        <PackageReference Include="Ihis.FhirEngine.WebApi.Extensions.Swashbuckle" Version="2.2.3-beta-23214.1" />
+        <PackageReference Include="Ihis.FhirEngine.WebApi.R4" Version="2.2.3-beta-23214.1" />
+        <PackageReference Include="Ihis.FhirEngine.Data.SqlServer" Version="2.2.3-beta-23214.1" />
+        <PackageReference Include="Ihis.FhirEngine.Data.SqlServer.Extensions.Migration" Version="2.2.3-beta-23214.1" />
+    </ItemGroup>
+
+</Project>

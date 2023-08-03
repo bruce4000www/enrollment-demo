@@ -1,0 +1,147 @@
+﻿{
+  "resourceType": "Bundle",
+  "id": "structureDefinitions",
+  "meta": {
+    "lastUpdated": "2021-05-05T08:04:45.3420489+00:00"
+  },
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://ihis.com.sg/fhir/StructureDefinition/Appointment-custom",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "Appointment-custom",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+            "valueCode": "normative"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+            "valueCode": "4.0.0"
+          }
+        ],
+        "url": "http://ihis.com.sg/fhir/StructureDefinition/Appointment-custom",
+        "version": "4.0.1",
+        "name": "Appointment-custom",
+        "status": "active",
+        "date": "2019-11-01T09:29:23+11:00",
+        "publisher": "IHIS",
+        "fhirVersion": "4.0.1",
+        "mapping": [
+          {
+            "identity": "v2",
+            "uri": "http://hl7.org/v2",
+            "name": "HL7 v2 Mapping"
+          },
+          {
+            "identity": "rim",
+            "uri": "http://hl7.org/v3",
+            "name": "RIM Mapping"
+          },
+          {
+            "identity": "servd",
+            "uri": "http://www.omg.org/spec/ServD/1.0/",
+            "name": "ServD"
+          }
+        ],
+        "kind": "complex-type",
+        "abstract": false,
+        "type": "Appointment",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Appointment",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Appointment",
+              "path": "Appointment",
+              "definition": "The Custom appointment.",
+              "mustSupport": false,
+              "isModifier": false,
+              "constraint": [
+                {
+                  "key": "ihis-apt-1",
+                  "severity": "error",
+                  "human": "If present, start SHALL have a higher value than current date time",
+                  "expression": "start.hasValue().not() or now() <= start"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://ihis.com.sg/fhir/StructureDefinition/Appointment-cancel",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "url": "http://ihis.com.sg/fhir/StructureDefinition/Appointment-cancel",
+        "name": "Appointment-cancel",
+        "status": "draft",
+        "fhirVersion": "4.0.1",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Parameters",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Parameters",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Parameters.parameter",
+              "path": "Parameters.parameter",
+              "slicing": {
+                "discriminator": [
+                  {
+                    "type": "value",
+                    "path": "name"
+                  }
+                ],
+                "rules": "open"
+              },
+              "min": 1,
+              "max": "1"
+            },
+            {
+              "id": "Parameters.parameter.part",
+              "path": "Parameters.parameter.part",
+              "max": "0",
+              "contentReference": "http://hl7.org/fhir/StructureDefinition/Parameters#Parameters.parameter"
+            },
+            {
+              "id": "Parameters.parameter:cancellationReason",
+              "path": "Parameters.parameter",
+              "sliceName": "cancellationReason",
+              "min": 1,
+              "max": "1"
+            },
+            {
+              "id": "Parameters.parameter:cancellationReason.name",
+              "path": "Parameters.parameter.name",
+              "fixedString": "cancellationReason"
+            },
+            {
+              "id": "Parameters.parameter:cancellationReason.value[x]",
+              "path": "Parameters.parameter.value[x]",
+              "min": 1,
+              "type": [
+                {
+                  "code": "CodeableConcept"
+                }
+              ]
+            },
+            {
+              "id": "Parameters.parameter:cancellationReason.resource",
+              "path": "Parameters.parameter.resource",
+              "max": "0"
+            },
+            {
+              "id": "Parameters.parameter:cancellationReason.part",
+              "path": "Parameters.parameter.part",
+              "max": "0"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+@baseUrl=https://localhost:5001
+@applicationId=test-app
+
+### Create Appointment Request:
+# @name createAppointmentRequest
+
+POST {{baseUrl}}/Appointment
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Appointment",
+  "status": "proposed",
+  "start": "2120-01-01T12:00:00+08:00",
+  "end": "2120-01-01T12:30:00+08:00",
+  "participant": [
+    {
+      "actor": {
+        "reference": "Patient/testpatient"
+      },
+      "status": "tentative"
+    }
+  ]
+}
+
+
+### Get Appointment Request:
+@apptId = {{createAppointmentRequest.response.body.$.id}}
+# @name getAppointmentRequest
+GET {{baseUrl}}/Appointment/B4EE40DC5900444CBBE6D195327961FD
+X-Ihis-SourceApplication: {{applicationId}}
+
+### Update Appointment Request:
+# @name updateAppointmentRequest
+
+PUT {{baseUrl}}/Appointment/B4EE40DC5900444CBBE6D195327961FD
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Appointment",
+  "id": "B4EE40DC5900444CBBE6D195327961FD",
+  "status": "proposed",
+  "start": "2120-01-01T12:00:00+08:00",
+  "end": "2120-01-01T12:30:00+08:00",
+  "description": "For followup",
+  "participant": [
+    {
+      "actor": {
+        "reference": "Patient/testpatient"
+      },
+      "status": "tentative"
+    }
+  ]
+}
+
+
+### Cancel Appointment Request:
+# @name cancelAppointmentRequest
+
+POST {{baseUrl}}/Appointment/B4EE40DC5900444CBBE6D195327961FD/$cancel
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "cancellationReason",
+      "valueCodeableConcept": {
+        "text": "lost interest"
+      }
+    }
+  ]
+}
+
+      
+### Search Cancelled Appointment Request:
+# @name searchCancelledAppointmentRequest
+GET {{baseUrl}}/Appointment?status=cancelled
+X-Ihis-SourceApplication: {{applicationId}}
+      
+
+
+### Search by Post Cancelled Appointment Request:
+# @name searchCancelledAppointmentRequest
+POST {{baseUrl}}/Appointment/_search
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/x-www-form-urlencoded
+
+status=cancelled
