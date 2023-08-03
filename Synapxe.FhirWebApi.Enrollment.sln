@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Synapxe.FhirWebApi.Enrollment", "Synapxe.FhirWebApi.Enrollment\Synapxe.FhirWebApi.Enrollment\Synapxe.FhirWebApi.Enrollment.csproj", "{EFE0EA2E-ADD0-4DC7-AA19-A69C06143F7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Synapxe.FhirWebApi.Enrollment", "Synapxe.FhirWebApi.Enrollment\Synapxe.FhirWebApi.Enrollment\Synapxe.FhirWebApi.Enrollment.csproj", "{EFE0EA2E-ADD0-4DC7-AA19-A69C06143F7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Synapxe.FhirWebApi.Enrollment.IntegrationTests", "Synapxe.FhirWebApi.Enrollment\Synapxe.FhirWebApi.Enrollment.IntegrationTests\Synapxe.FhirWebApi.Enrollment.IntegrationTests.csproj", "{52703AB5-31AD-4CFF-B7F1-4A8558D7FEAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Synapxe.FhirWebApi.Enrollment.IntegrationTests", "Synapxe.FhirWebApi.Enrollment\Synapxe.FhirWebApi.Enrollment.IntegrationTests\Synapxe.FhirWebApi.Enrollment.IntegrationTests.csproj", "{52703AB5-31AD-4CFF-B7F1-4A8558D7FEAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

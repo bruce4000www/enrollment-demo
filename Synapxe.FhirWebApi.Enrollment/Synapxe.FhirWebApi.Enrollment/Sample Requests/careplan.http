@@ -1,0 +1,78 @@
+@baseUrl=https://localhost:5001
+@applicationId=test-app
+
+### Create Enrollment Request:
+
+POST {{baseUrl}}/CarePlan/$put-enrollment
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/fhir+json
+
+{
+    "resourceType": "CarePlan",
+    "instantiatesCanonical": [
+        "http://ihis.sg/PlanDefinition/healthier-sg/healthier-sg-programme"
+    ],
+    "extension": [
+        {
+            "url": "http://ihis.sg/extension/enrollment-status-reason",
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://ihis.sg/ValueSet/hsg-enrollment-status-reason",
+                        "code": "enrolment"
+                    }
+                ]
+            }
+        }
+    ],
+    "status": "completed",
+    "intent": "plan",
+    "category": [
+        {
+            "coding": [
+                {
+                    "system": "http://ihis.sg/ValueSet/hsg-care-plan-category",
+                    "code": "pophealth-enrolment",
+                    "display": "Pophealth Enrolment"
+                }
+            ]
+        }
+    ],
+    "subject": {
+        "reference":"Patient/54099bd47b3a478382e6ecd9fed37afa",
+        "type":"Patient",
+        "identifier": {
+            "system": "http://ihis.sg/identifier/nric",
+            "value": "S1234567D"
+        }
+    },
+    "period": {
+        "start": "2023-08-03T16:41:12+08:00"
+    },
+    "author": {
+        "reference":"Organization/1ade539d360a4c129b13590669ba036f",
+        "type":"Organization",
+        "identifier": {
+            "system": "http://ihis.sg/identifier/hci-code",
+            "value": "19M201"
+        }
+    }
+}
+
+
+### Search Enrollment By Status
+
+POST {{baseUrl}}/CarePlan/_search
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/x-www-form-urlencoded
+
+status=completed&_total=accurate
+
+
+### Search Enrollment By Custom Search Parameter
+
+POST {{baseUrl}}/CarePlan/_search
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/x-www-form-urlencoded
+
+author=Organization/1ade539d360a4c129b13590669ba036f&_total=accurate

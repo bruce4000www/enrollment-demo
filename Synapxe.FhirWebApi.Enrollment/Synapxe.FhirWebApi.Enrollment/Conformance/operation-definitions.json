@@ -38,6 +38,70 @@
           }
         ]
       }
+    },
+    {
+      "resource": {
+        "resourceType": "OperationDefinition",
+        "id": "CarePlan-put-enrollment",
+        "name": "CarePlan-put-enrollment",
+        "inputProfile": "http://ihis.sg/StructureDefinition/CarePlan-pophealth-enrolment",
+        "status": "active",
+        "kind": "operation",
+        "description": "Create enrollment",
+        "system": false,
+        "type": true,
+        "instance": false,
+        "parameter": [
+          {
+            "name": "resource",
+            "use": "in",
+            "min": 1,
+            "max": "1",
+            "documentation": "Input the CarePlan to be created with details",
+            "type": "CarePlan"
+          },
+          {
+            "name": "return",
+            "use": "out",
+            "min": 1,
+            "max": "1",
+            "documentation": "Return the created CarePlan with input details",
+            "type": "CarePlan"
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "OperationDefinition",
+        "id": "CarePlan-get-enrollment",
+        "name": "CarePlan-get-enrollment",
+        "status": "active",
+        "kind": "operation",
+        "affectsState": false,
+        "description": "Retrieve patient's enrollment",
+        "system": false,
+        "type": true,
+        "instance": false,
+        "parameter": [
+          {
+            "name": "patient-nric",
+            "use": "in",
+            "min": 1,
+            "max": "1",
+            "documentation": "NRIC - Patient's identifier",
+            "type": "string"
+          },
+          {
+            "name": "return",
+            "use": "out",
+            "min": 1,
+            "max": "1",
+            "documentation": "Patient's' enrollment",
+            "type": "CarePlan"
+          }
+        ]
+      }
     }
   ]
 }

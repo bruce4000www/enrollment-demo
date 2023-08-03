@@ -142,6 +142,308 @@
           ]
         }
       }
+    },
+    {
+      "fullUrl": "http://ihis.sg/StructureDefinition/CarePlan-pophealth-enrolment",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "url": "http://ihis.sg/StructureDefinition/CarePlan-pophealth-enrolment",
+        "name": "HSAREnrollment",
+        "status": "draft",
+        "fhirVersion": "4.0.1",
+        "kind": "resource",
+        "abstract": false,
+        "type": "CarePlan",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/CarePlan",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "CarePlan.extension",
+              "path": "CarePlan.extension",
+              "slicing": {
+                "discriminator": [
+                  {
+                    "type": "value",
+                    "path": "url"
+                  }
+                ],
+                "rules": "open"
+              },
+              "min": 1
+            },
+            //{
+            //  "id": "CarePlan.extension:override-capacity-flag",
+            //  "path": "CarePlan.extension",
+            //  "sliceName": "override-capacity-flag",
+            //  "min": 0,
+            //  "max": "1",
+            //  "type": [
+            //    {
+            //      "code": "Extension",
+            //      "profile": [
+            //        "http://ihis.sg/extension/override-capacity-flag"
+            //      ]
+            //    }
+            //  ],
+            //  "isModifier": false
+            //},
+            //{
+            //  "id": "CarePlan.extension:provided-by",
+            //  "path": "CarePlan.extension",
+            //  "sliceName": "provided-by",
+            //  "min": 0,
+            //  "max": "1",
+            //  "type": [
+            //    {
+            //      "code": "Extension",
+            //      "profile": [
+            //        "http://ihis.sg/extension/provided-by"
+            //      ]
+            //    }
+            //  ],
+            //  "isModifier": false
+            //},
+            {
+              "id": "CarePlan.extension:enrollment-status-reason",
+              "path": "CarePlan.extension",
+              "sliceName": "enrollment-status-reason",
+              "min": 1,
+              "max": "1",
+              "type": [
+                {
+                  "code": "Extension",
+                  "profile": [
+                    "http://ihis.sg/extension/enrollment-status-reason"
+                  ]
+                }
+              ],
+              "isModifier": false
+            },
+            {
+              "id": "CarePlan.instantiatesCanonical",
+              "path": "CarePlan.instantiatesCanonical",
+              "min": 1,
+              "max": "1",
+              "fixedCanonical": "http://ihis.sg/PlanDefinition/healthier-sg/healthier-sg-programme"
+            },
+            {
+              "id": "CarePlan.intent",
+              "path": "CarePlan.intent",
+              "fixedCode": "plan"
+            },
+            {
+              "id": "CarePlan.category",
+              "path": "CarePlan.category",
+              "min": 1,
+              "max": "1"
+            },
+            {
+              "id": "CarePlan.category.coding",
+              "path": "CarePlan.category.coding",
+              "binding": {
+                "strength": "required",
+                "valueSet": "http://ihis.sg/ValueSet/hsg-care-plan-category"
+              }
+            },
+            {
+              "id": "CarePlan.category.coding.system",
+              "path": "CarePlan.category.coding.system",
+              "min": 1
+            },
+            {
+              "id": "CarePlan.category.coding.code",
+              "path": "CarePlan.category.coding.code",
+              "min": 1,
+              "fixedCode": "pophealth-enrolment"
+            },
+            {
+              "id": "CarePlan.subject",
+              "path": "CarePlan.subject",
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": [
+                    "http://hl7.org/fhir/StructureDefinition/Patient"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "CarePlan.subject.type",
+              "path": "CarePlan.subject.type",
+              "min": 1,
+              "fixedUri": "Patient"
+            },
+            {
+              "id": "CarePlan.subject.identifier",
+              "path": "CarePlan.subject.identifier",
+              "min": 1
+            },
+            {
+              "id": "CarePlan.subject.identifier.system",
+              "path": "CarePlan.subject.identifier.system",
+              "min": 1,
+              "fixedUri": "http://ihis.sg/identifier/nric"
+            },
+            {
+              "id": "CarePlan.subject.identifier.value",
+              "path": "CarePlan.subject.identifier.value",
+              "min": 1
+            },
+            {
+              "id": "CarePlan.period",
+              "path": "CarePlan.period",
+              "min": 1
+            },
+            {
+              "id": "CarePlan.period.start",
+              "path": "CarePlan.period.start",
+              "constraint": {
+                "human": "Careplan start datetime cannot be the future datetime",
+                "expression": "$this.convertsToDateTime() = false or $this.hasValue().not() or now() > $this"
+              }
+            },
+            {
+              "id": "CarePlan.period.end",
+              "path": "CarePlan.period.end",
+              "constraint": {
+                "human": "Careplan end datetime cannot be the future datetime",
+                "expression": "$this.convertsToDateTime() = false or $this.hasValue().not() or now() > $this"
+              }
+            },
+            {
+              "id": "CarePlan.author",
+              "path": "CarePlan.author",
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": [
+                    "http://hl7.org/fhir/StructureDefinition/Organization"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "CarePlan.author.type",
+              "path": "CarePlan.author.type",
+              "min": 1,
+              "fixedUri": "Organization"
+            },
+            {
+              "id": "CarePlan.author.identifier",
+              "path": "CarePlan.author.identifier",
+              "min": 1
+            },
+            {
+              "id": "CarePlan.author.identifier.system",
+              "path": "CarePlan.author.identifier.system",
+              "min": 1,
+              "fixedUri": "http://ihis.sg/identifier/hci-code"
+            },
+            {
+              "id": "CarePlan.author.identifier.value",
+              "path": "CarePlan.author.identifier.value",
+              "min": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://ihis.sg/extension/enrollment-status-reason",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "url": "http://ihis.sg/extension/enrollment-status-reason",
+        "name": "EnrollmentStatusReason",
+        "status": "draft",
+        "fhirVersion": "4.0.1",
+        "kind": "complex-type",
+        "abstract": false,
+        "context": [
+          {
+            "type": "element",
+            "expression": "CarePlan"
+          }
+        ],
+        "type": "Extension",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Extension",
+              "path": "Extension",
+              "min": 1,
+              "max": "1"
+            },
+            {
+              "id": "Extension.url",
+              "path": "Extension.url",
+              "fixedUri": "http://ihis.sg/extension/enrollment-status-reason"
+            },
+            {
+              "id": "Extension.value[x]",
+              "path": "Extension.value[x]",
+              "comment": "Enrollment status reason, refer to valueset for possible values",
+              "min": 1,
+              "type": [
+                {
+                  "code": "CodeableConcept"
+                }
+              ],
+              "binding": {
+                "strength": "required",
+                "valueSet": "http://ihis.sg/ValueSet/hsg-enrollment-status-reason"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://ihis.sg/ValueSet/hsg-enrollment-status-reason",
+      "resource": {
+        "resourceType": "ValueSet",
+        "id": "hsg-enrollment-status-reason",
+        "url": "http://ihis.sg/ValueSet/hsg-enrollment-status-reason",
+        "version": "0.1.0",
+        "name": "hsg-enrollment-status-reason",
+        "title": "hsg-enrollment-status-reason",
+        "status": "active",
+        "date": "2021-12-01",
+        "publisher": "Integrated Health Information Systems Pte Ltd (IHiS)",
+        "description": "Enrollment Status Reason",
+        "compose": {
+          "include": [
+            {
+              "system": "http://ihis.sg/ValueSet/hsg-enrollment-status-reason",
+              "concept": [
+                {
+                  "code": "enrolment",
+                  "display": "Submit enrolment"
+                },
+                {
+                  "code": "pcp-change",
+                  "display": "Change PCP"
+                },
+                {
+                  "code": "withdraw",
+                  "display": "Withdraw an enrolment"
+                },
+                {
+                  "code": "nehr-optout",
+                  "display": "NEHR Optout"
+                },
+                {
+                  "code": "programme-exclusion",
+                  "display": "Programme Exclusion"
+                }
+              ]
+            }
+          ]
+        }
+      }
     }
   ]
 }

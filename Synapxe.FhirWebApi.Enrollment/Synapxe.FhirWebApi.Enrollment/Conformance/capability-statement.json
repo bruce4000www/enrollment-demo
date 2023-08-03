@@ -130,6 +130,48 @@
             }
           ]
         },
+        {
+          "type": "CarePlan",
+          "interaction": [
+            {
+              "code": "create",
+              "documentation": "Create CarePlan."
+            },
+            {
+              "code": "update",
+              "documentation": "Update CarePlan."
+            },
+            {
+              "code": "vread",
+              "documentation": "Read CarePlan version."
+            },
+            {
+              "code": "search-type",
+              "documentation": "Search CarePlan."
+            }
+          ],
+          "operation": [
+            {
+              "name": "put-enrollment",
+              "definition": "OperationDefinition/CarePlan-put-enrollment",
+              "documentation": "For SoE to submit patient's enrollment"
+            },
+            {
+              "name": "get-enrollment",
+              "definition": "OperationDefinition/CarePlan-get-enrollment",
+              "documentation": "For SoE to serach patient's enrollment by NRIC"
+            }
+          ],
+          "searchParam": [
+            {
+              "name": "author",
+              "documentation": "The author of the enrollment",
+              "definition": "http://ihis.sg/SearchParameter/CarePlan-author",
+              "type": "reference"
+            }
+          ],
+          "versioning": "versioned"
+        }
       ]
     }
   ]

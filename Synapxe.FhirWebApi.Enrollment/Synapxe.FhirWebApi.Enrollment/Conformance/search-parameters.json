@@ -57,6 +57,30 @@
           "Location"
         ]
       }
+    },
+    {
+      "fullUrl": "http://ihis.sg/SearchParameter/CarePlan-author",
+      "resource": {
+        "resourceType": "SearchParameter",
+        "id": "CarePlan-author",
+        "url": "http://ihis.sg/SearchParameter/CarePlan-authory",
+        "version": "0.1.0",
+        "name": "CarePlan-author",
+        "status": "draft",
+        "experimental": false,
+        "date": "2021-01-01T09:29:23+11:00",
+        "publisher": "Integrated Health Information Systems Pte Ltd (IHiS)",
+        "description": "The author of the CarePlan",
+        "code": "author",
+        "base": [
+          "CarePlan"
+        ],
+        "type": "reference",
+        "expression": "CarePlan.author.where(resolve() is Organization)",
+        "target": [
+          "Organization"
+        ]
+      }
     }
   ]
 }

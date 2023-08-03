@@ -1,0 +1,42 @@
+{
+  "resourceType": "Bundle",
+  "id": "valueSets",
+  "meta": {
+    "lastUpdated": "2021-05-05T08:04:45.3420489+00:00"
+  },
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://ihis.sg/ValueSet/hsg-care-plan-category",
+      "resource": {
+        "resourceType": "ValueSet",
+        "id": "hsg-care-plan-category",
+        "url": "http://ihis.sg/ValueSet/hsg-care-plan-category",
+        "version": "0.1.0",
+        "name": "hsg-care-plan-category",
+        "title": "hsg-care-plan-category",
+        "status": "active",
+        "date": "2021-12-01",
+        "publisher": "Integrated Health Information Systems Pte Ltd (IHiS)",
+        "description": "Care Plan Category",
+        "compose": {
+          "include": [
+            {
+              "system": "http://ihis.sg/ValueSet/hsg-care-plan-category",
+              "concept": [
+                {
+                  "code": "pophealth-enrolment",
+                  "display": "Pophealth Enrolment"
+                },
+                {
+                  "code": "pophealth-plan",
+                  "display": "Pophealth Plan"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
